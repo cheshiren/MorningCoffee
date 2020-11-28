@@ -2,8 +2,8 @@
 //Десмод
 //Стрикс|Неясыть
 
--> NEWS54
--> top
+// -> NEWS54
+// -> top
 
 LIST coffeeState = beans_are_ground, ingredients_added, ingredients_mixed, heated_1st_time, boiled_1st_time, heated_2nd_time, boiled_2nd_time, heated_3rd_time,boiled_3rd_time, in_cup, ground_settled, ready
 LIST coffeeIngredients = beans, ibrik, water, coffee, sugar, grinder
