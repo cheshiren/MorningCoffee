@@ -6,12 +6,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 /* 04.09.2020: Меняем основной шрифт */
 
-@import url('https://fonts.googleapis.com/css2?family=Grenze&display=swap');
-/* 05.09.2020: Шрифт для слов на дворфийском */
-
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-/* 05.09.2020: Шрифт для слов на языке зелёнокожих (искажённый элькутский) */
-
 body {
     font-family: 'Fira Sans', sans-serif;
     font-weight: lighter;
@@ -98,7 +92,7 @@ h3.written-in-ink {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    /* 04.09.2002 Убираем дополнительный верхний padding у всего стори-контейнера */
+    /* 04.09.2020 Убираем дополнительный верхний padding у всего стори-контейнера */
     /*padding-top: 4em;*/
     background: white;
 }
@@ -219,25 +213,6 @@ p.head {
     line-height: 1.7em;
 }
 
-/* 05.09.2020 Стиль для фраз на дворфийском */
-.dwarf-lang {
-    font-style: italic;
-    /*font-family: 'Grenze', serif;
-    font-size: 15pt;*/
-}
-
-/* 05.09.2020 Стиль для фраз на «гоблинском» */
-.greens-lang {
-    font-family: 'MedievalSharp', serif;
-}
-
-/* Стрелки для ссылки вместо '>>' (см. main.js) */
-
-.next:before {
-    font-family: FontAwesome;
-    content: "\f054\f054";
-}
-
 .voice {
     font-style: italic;
 }
@@ -248,4 +223,62 @@ p.head {
 
 .tv {
     color: teal;
+}
+
+.logo {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+    margin: 0;*/
+    text-align: center;
+    opacity: 0;
+    -webkit-animation: fadeIn 2s 5s 1 forwards;
+    /* Safari 4+ */
+    -moz-animation: fadeIn 2s 5s 1 forwards;
+    /* Fx 2+ */
+    -o-animation: fadeIn 2s 5s 1 forwards;
+    /* Opera 12+ */
+    animation: fadeIn 2s 5s 1 forwards;
+    /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
