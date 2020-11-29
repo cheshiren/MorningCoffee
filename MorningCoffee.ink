@@ -2,7 +2,7 @@
 //Десмод
 //Стрикс|Неясыть
 
-// -> NEWS54.end
+-> NEWS54.end
 // -> NEWS54
 // -> top
 
@@ -442,7 +442,7 @@ VAR end_1st_part = false
 * Мой город[]. # CLASS: coffee
 	И я не позволю каким-то клоунам в сутанах всё испортить, когда веселье только началось.
 	Я расправляю чёрные крылья и взмываю в звёздное небо.
-	<p style="text-align: center;"><svg style="width: 75px;height: 90px;"><path d="M60,30 L60,30 L60,30 M60,15 L60,15 L60,15 M45,15 L45,15 L45,30 M30,15 L30,15 L30,15 M30,30 L30,30 L30,30 M15,15 L15,15 L15,30 M15,45 L15,45 L30,45 M15,60 L15,60 L30,60 M45,45 L45,45 L45,60 M60,60 L60,60 L60,45 " style="stroke-width: 12; stroke-linecap: square; stroke-linejoin: bevel; stroke: rgb(58, 58, 58); fill: none;"/></svg></p>
+	<p class="logo"><svg style="width: 75px;height: 90px;"><path d="M60,30 L60,30 L60,30 M60,15 L60,15 L60,15 M45,15 L45,15 L45,30 M30,15 L30,15 L30,15 M30,30 L30,30 L30,30 M15,15 L15,15 L15,30 M15,45 L15,45 L30,45 M15,60 L15,60 L30,60 M45,45 L45,45 L45,60 M60,60 L60,60 L60,45 " style="stroke-width: 12; stroke-linecap: square; stroke-linejoin: bevel; stroke: rgb(58, 58, 58); fill: none;"/></svg></p>
 -> END
 
 // functions
