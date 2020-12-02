@@ -2,9 +2,12 @@
 //Десмод
 //Стрикс|Неясыть
 
+
 // -> NEWS54.end
 // -> NEWS54
-// -> top
+-> top
+
+LIST lang = rus, (eng)
 
 LIST coffeeState = beans_are_ground, ingredients_added, ingredients_mixed, heated_1st_time, boiled_1st_time, heated_2nd_time, boiled_2nd_time, heated_3rd_time,boiled_3rd_time, in_cup, ground_settled, ready
 LIST coffeeIngredients = beans, ibrik, water, coffee, sugar, grinder
@@ -20,14 +23,36 @@ VAR song = 5
 
 VAR end_1st_part = false
 
-Я стою на краю обрыва и смотрю на восток, на горизонт, откуда вот-вот покажется солнце. Снимаю мотоциклетный шлем и оскаливаюсь в ухмылке. Ну давай же.
+* [Русский]
+	~ lang += rus
+* [English]
+	~ lang += eng
+-
+
+
+{lang ? rus:
+	- Я стою на краю обрыва и смотрю на восток, на горизонт, откуда вот-вот покажется солнце. Снимаю мотоциклетный шлем и оскаливаюсь в ухмылке. Ну давай же.
+	- I stand on the edge of a cliff and look to the east, awaiting for the sun to emerge. I take off the bike helmet and grin. Come on, show yourself.
+}
 * [>>]
-	Первые лучи брызжут раскалённым железом. Ослеплённый, я чувствую их пламенные объятия на своей коже. Я хохочу.
-	** [>>] И просыпаюсь.
+	{lang ? rus:
+		- Первые лучи брызжут раскалённым железом. Ослеплённый, я чувствую их пламенные объятия на своей коже. Я хохочу.
+		- First rays spray with molten iron. Blinded, I feel their fierce hugs on my skin. I laugh.
+	}
+	** [>>] 
+		{lang ? rus:
+			- И просыпаюсь.
 			Пару минут лежу, глядя на тёмный потолок, потом подношу к глазам руку с часами: половина седьмого. Пора вставать.
-			*** [>>]
-				Накинув халат, протопав в ванную, проведя все необходимые процедуры, я спускаюсь в холл и оттуда в кухню. Утро должно начинаться с чашки хорошего, крепкого кофе.
+			- And wake up.
+			I lie for a couple of minutes looking at the dark ceiling, then glance at the wristwatch: half past six. Time to rise up.
+		}
+		*** [>>]
+			{lang ? rus:
+				- Накинув халат, протопав в ванную, проведя все необходимые процедуры, я спускаюсь в холл и оттуда в кухню. Утро должно начинаться с чашки хорошего, крепкого кофе.
 				А кофе я пью по-турецки.
+				- I wear the bathrobe, step into bathroom, do all the rituals, then go down in the hall and enter the kitchen. The day should start with the cup of good strong coffee.
+				And I prefer Turkish one.
+			}
 
 - (top)
 	// [{coffeeState}]
@@ -41,14 +66,23 @@ VAR end_1st_part = false
 = opts
 	// {Phone.ring == 4 && Phone.text == 0: -> DONE}
 	{need_answer: -> DONE}
-	* {coffeeIngredients !? ibrik} [Найти турку]
-		Открыв {kitchen_cupboards(1)} своей хайтековской кухни, достаю оттуда турку. Настоящую, медную. Совсем не подходящую по стилю окружающей мебели. Ставлю её на холодную плиту.
+	* {coffeeIngredients !? ibrik} [{lang ? rus:Найти турку|Find the ibrik}]
+		{lang ? rus:
+			- Открыв {kitchen_cupboards(1)} своей хайтековской кухни, достаю оттуда турку. Настоящую, медную. Совсем не подходящую по стилю окружающей мебели. Ставлю её на холодную плиту.
+			- I open {kitchen_cupboards(1)} in my hi-tech kitchen and reveal the ibrik. Real, made of copper. Doesn't match the overall style at all. Put it on the cold stove.
+		}
 		~coffeeIngredients += ibrik
-	* {coffeeIngredients !? beans} [Найти зёрна]
-		В {kitchen_cupboards(2)} я нахожу джутовый мешочек с трафаретной надписью «Cafés do Brasil» и ставлю {coffeeIngredients !? grinder:на стойку|рядом с мельницей}.
+	* {coffeeIngredients !? beans} [{lang ? rus:Найти зёрна|Find the beans}]
+		{lang ? rus:
+			- В {kitchen_cupboards(2)} я нахожу джутовый мешочек с трафаретной надписью «Cafés do Brasil» и ставлю {coffeeIngredients !? grinder:на стойку|рядом с мельницей}.
+			- Inside {kitchen_cupboards(1)} I find a little jute bag with the stencil "Cafés do Brasil" and put it {coffeeIngredients !? grinder:on the counter|next to the grinder}.
+		}
 		~coffeeIngredients += beans
-	* {coffeeIngredients !? grinder} [Найти мельницу]
-		Из {kitchen_cupboards(3)} я осторожно вынимаю ручную мельницу и выставляю {coffeeIngredients !? beans:на стойку|рядом с зёрнами}. Немецкий антиквариат времён кайзера. На белой эмали, покрытой паутиной трещин, — чёрные готические буквы: «Kaffee».
+	* {coffeeIngredients !? grinder} [{lang ? rus:Найти мельницу|Find the grinder}]
+		{lang ? rus:
+			- Из {kitchen_cupboards(3)} я осторожно вынимаю ручную мельницу и выставляю {coffeeIngredients !? beans:на стойку|рядом с зёрнами}. Немецкий антиквариат времён кайзера. На белой эмали, покрытой паутиной трещин, — чёрные готические буквы: «Kaffee».
+			- From {kitchen_cupboards(1)} I take out hand grinder and stand it {coffeeIngredients !? beans:on the counter|next to the beans}. German antiques of Kaiser times. White enamel covered with the web of cracks bears the black gothic letters: "Kaffee".
+		}
 		~coffeeIngredients += grinder
 	* {coffeeState < beans_are_ground && coffeeIngredients ? beans && coffeeIngredients ? grinder} [Смолоть зёрна]
 		Развязываю мешочек, пахну́вший жареным кофе, набираю полную пригоршню и ссыпаю в чашу на мельнице. Не торопясь, кручу ручку, слушая хруст зёрен.// Когда чаша пустеет, выдвигаю ёмкость снизу, пересыпаю её содержимое назад в чашу и снова кручу ручку. Повторяю несколько раз, пока не получаю очень тонкий помол.
@@ -450,15 +484,30 @@ VAR end_1st_part = false
 	~ temp check = (beans, ibrik, grinder)
 	{
 		- LIST_COUNT(coffeeIngredients ^ check) == 0:
-			{case == 1: один из шкафов}
-			{case == 2: одном из шкафов}
-			{case == 3: одного из шкафов}
+			{
+				- lang ? rus:
+					{case == 1: один из шкафов}
+					{case == 2: одном из шкафов}
+					{case == 3: одного из шкафов}
+				- lang ? eng:
+					one of the cupboards
+			}
 		- LIST_COUNT(coffeeIngredients ^ check) == 1:
-			{case == 1: другой шкаф}
-			{case == 2: другом шкафу}
-			{case == 3: другого шкафа}
+			{
+				- lang ? rus:
+					{case == 1: другой шкаф}
+					{case == 2: другом шкафу}
+					{case == 3: другого шкафа}
+				- lang ? eng:
+					another cupboard
+			}
 		- LIST_COUNT(coffeeIngredients ^ check) == 2:
-			{case == 1: очередной шкаф}
-			{case == 2: очередном шкафу}
-			{case == 3: очередного шкафа}
+			{
+					- lang ? rus:
+						{case == 1: очередной шкаф}
+						{case == 2: очередном шкафу}
+						{case == 3: очередного шкафа}
+					- lang ? eng:
+					the last cupboard
+			}
 	}
