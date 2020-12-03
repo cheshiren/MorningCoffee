@@ -5,7 +5,7 @@
 
 // -> NEWS54.end
 // -> NEWS54
--> top
+// -> top
 
 LIST lang = rus, (eng)
 
@@ -23,13 +23,14 @@ VAR song = 5
 
 VAR end_1st_part = false
 
+<h2>Выберите язык \| Choose the language</h2>
 * [Русский]
 	~ lang += rus
 * [English]
 	~ lang += eng
--
+- #CLEAR
 
-
+<div class="header"><h1>{lang ? rus:Утренний кофе|Morning Coffee}</h1></div>
 {lang ? rus:
 	- Я стою на краю обрыва и смотрю на восток, на горизонт, откуда вот-вот покажется солнце. Снимаю мотоциклетный шлем и оскаливаюсь в ухмылке. Ну давай же.
 	- I stand on the edge of a cliff and look to the east, awaiting for the sun to emerge. I take off the bike helmet and grin. Come on, show yourself.
@@ -50,7 +51,7 @@ VAR end_1st_part = false
 			{lang ? rus:
 				- Накинув халат, протопав в ванную, проведя все необходимые процедуры, я спускаюсь в холл и оттуда в кухню. Утро должно начинаться с чашки хорошего, крепкого кофе.
 				А кофе я пью по-турецки.
-				- I wear the bathrobe, step into bathroom, do all the rituals, then go down in the hall and enter the kitchen. The day should start with the cup of good strong coffee.
+				- I wear the bathrobe, step into bathroom, do all the rituals, then go down in the hall and enter the kitchen. The day should start with a cup of good strong coffee.
 				And I prefer Turkish one.
 			}
 
@@ -69,7 +70,7 @@ VAR end_1st_part = false
 	* {coffeeIngredients !? ibrik} [{lang ? rus:Найти турку|Find the ibrik}]
 		{lang ? rus:
 			- Открыв {kitchen_cupboards(1)} своей хайтековской кухни, достаю оттуда турку. Настоящую, медную. Совсем не подходящую по стилю окружающей мебели. Ставлю её на холодную плиту.
-			- I open {kitchen_cupboards(1)} in my hi-tech kitchen and reveal the ibrik. Real, made of copper. Doesn't match the overall style at all. Put it on the cold stove.
+			- I open {kitchen_cupboards(1)} in my hi-tech kitchen and reveal the ibrik. Authentic, made of copper. Doesn't match the overall style at all. I put it on the cold stove.
 		}
 		~coffeeIngredients += ibrik
 	* {coffeeIngredients !? beans} [{lang ? rus:Найти зёрна|Find the beans}]
@@ -84,63 +85,119 @@ VAR end_1st_part = false
 			- From {kitchen_cupboards(1)} I take out hand grinder and stand it {coffeeIngredients !? beans:on the counter|next to the beans}. German antiques of Kaiser times. White enamel covered with the web of cracks bears the black gothic letters: "Kaffee".
 		}
 		~coffeeIngredients += grinder
-	* {coffeeState < beans_are_ground && coffeeIngredients ? beans && coffeeIngredients ? grinder} [Смолоть зёрна]
-		Развязываю мешочек, пахну́вший жареным кофе, набираю полную пригоршню и ссыпаю в чашу на мельнице. Не торопясь, кручу ручку, слушая хруст зёрен.// Когда чаша пустеет, выдвигаю ёмкость снизу, пересыпаю её содержимое назад в чашу и снова кручу ручку. Повторяю несколько раз, пока не получаю очень тонкий помол.
+	* {coffeeState < beans_are_ground && coffeeIngredients ? beans && coffeeIngredients ? grinder} [{lang ? rus:Смолоть зёрна|Grind the beans}]
+		{lang ? rus:
+			- Развязываю мешочек, пахну́вший жареным кофе, набираю полную пригоршню и ссыпаю в чашу на мельнице. Не торопясь, кручу ручку, слушая хруст зёрен.
+			- I untie the bag smelling of roasted coffee, take the handful of beans and pour them in the grinder's bowl. Then keep turning the handle and listen to the beans crunching.
+		}// Когда чаша пустеет, выдвигаю ёмкость снизу, пересыпаю её содержимое назад в чашу и снова кручу ручку. Повторяю несколько раз, пока не получаю очень тонкий помол.
 		~coffeeState -= coffeeState
 		~coffeeState += beans_are_ground
-	* {coffeeIngredients !? coffee && coffeeIngredients ? ibrik && coffeeState == beans_are_ground} [Насыпать смолотый кофе]
-		Набираю полную столовую ложку молотого кофе и задумываюсь: не мало?
-		** [Хватит и ложки]
-			Решаю, что с таким тонким помолом кофе получится достаточно крепким,
-		** (dark_coffee)[Набрать ложку с горкой]
-			Решаю, что как раз сейчас мне не помешает дополнительный заряд бодрости, добираю кофе с горкой,
-		--	<> и ссыпаю его в турку.
+	* {coffeeIngredients !? coffee && coffeeIngredients ? ibrik && coffeeState == beans_are_ground} [{lang ? rus:Насыпать смолотый кофе|Pour the ground coffee}]
+		{lang ? rus:
+			- Набираю полную столовую ложку молотого кофе и задумываюсь: не мало?
+			- I take a tablespoon of ground coffee and think again: is it enough?
+		}
+		** [{lang ? rus:Хватит и ложки|The tablespoon is enough}]
+			{lang ? rus:
+				- Решаю, что с таким тонким помолом кофе получится достаточно крепким,
+				- I decide that ground is fine enough
+			}
+		** (dark_coffee)[{lang ? rus:Набрать ложку с горкой|Take a heaped tablespoon}]
+			{lang ? rus:
+				- Решаю, что как раз сейчас мне не помешает дополнительный заряд бодрости, добираю кофе с горкой,
+				- I decide that I need additional charge right now, take a heaped tablespoon of coffee
+			}
+		--	<> {lang ? rus:
+					- и ссыпаю его в турку.
+					- and pour it in the ibrik.
+				}
 			~coffeeIngredients += coffee
-	* {coffeeIngredients !? sugar && coffeeIngredients ? ibrik} [Насыпать сахар]
-		Придвинув хромированную сахарницу, задумываюсь, какой кофе мне сейчас хочется?
-		** (az_sekerli) [Az Şekerli (меньше чайной ложки сахара)]
-		** (orta_sekerli) [Orta Şekerli (с парой чайных ложек)]
-		** (sekerli) [Şekerli (с тремя чайными ложками)]
-		--	Насыпаю желаемое количество белого песка в турку.
+	* {coffeeIngredients !? sugar && coffeeIngredients ? ibrik} [{lang ? rus:Насыпать сахар|Pour some sugar}]
+		{lang ? rus:
+			- Придвинув хромированную сахарницу, задумываюсь, какой кофе мне сейчас хочется?
+			- Reaching for the chromium-plated sugar bowl, I think again, what kind of coffee do I want right now?
+		}
+		** (az_sekerli) [{lang ? rus:Az Şekerli (меньше чайной ложки сахара)|Az Şekerli (less than a teaspoon of sugar)}]
+		** (orta_sekerli) [{lang ? rus:Orta Şekerli (с парой чайных ложек)|Orta Şekerli (with a couple of sugar teaspoons)}]
+		** (sekerli) [{lang ? rus:Şekerli (с тремя чайными ложками)|Şekerli (with three teaspoons of sugar)}]
+		--	{lang ? rus:
+				- Насыпаю желаемое количество белого песка в турку.
+				- I pour the desired amount of white sand in the ibrik.
+			}
 			~coffeeIngredients += sugar
-	* {coffeeIngredients !? water && coffeeIngredients ? ibrik} [Налить в турку воды]
-		Наполняю турку до половины водой из фильтра.
+	* {coffeeIngredients !? water && coffeeIngredients ? ibrik} [{lang ? rus:Налить в турку воды|Pour some water in the ibrik}]
+		{lang ? rus:
+			- Наполняю турку до половины водой из фильтра.
+			- I feel the ibrik with water from the filter.
+		}
 		~coffeeIngredients += water
-	* {coffeeState == ingredients_added} [Перемешать содержимое турки]
-		Тщательно перемешиваю воду, кофе и сахар, пока не получаю однородную взвесь.
+	* {coffeeState == ingredients_added} [{lang ? rus:Перемешать содержимое турки|Stir the ibrik's contents}]
+		{lang ? rus:
+			- Тщательно перемешиваю воду, кофе и сахар, пока не получаю однородную взвесь.
+			- I stir water, coffee and sugar until I have them thoroughly mixed.
+		}
 		~coffeeState -= coffeeState
 		~coffeeState += ingredients_mixed
-	* (heat1) {coffeeState == ingredients_mixed} [Поставить турку на медленный огонь]
-		Щёлкнув пару раз ручкой плиты, ставлю турку прямо на центр конфорки.
+	* (heat1) {coffeeState == ingredients_mixed} [{lang ? rus:Поставить турку на медленный огонь|Put the ibrik on medium heat}]
+		{lang ? rus:
+			- Щёлкнув пару раз ручкой плиты, ставлю турку прямо на центр конфорки.
+			- I click an oven handle for a couple of times and put the ibrik in the center of a hotplate.
+		}
 		~coffeeState -= coffeeState
 		~coffeeState += heated_1st_time
-	+ {coffeeState == heated_1st_time || coffeeState == heated_2nd_time || coffeeState == heated_3rd_time} [Ждать, пока готовится кофе]
-	* (heat2) {coffeeState == boiled_1st_time} [Снять турку с огня]
-		По кухне уже разносится аромат {dark_coffee: крепкого }кофе. Убираю турку с плиты и ложкой снимаю всю пену в чашку. Ставлю турку назад на конфорку.
+	+ {coffeeState == heated_1st_time || coffeeState == heated_2nd_time || coffeeState == heated_3rd_time} [{lang ? rus:Ждать, пока готовится кофе|Wait for the coffee to boil}]
+	* (heat2) {coffeeState == boiled_1st_time} [{lang ? rus:Снять турку с огня|Remove the ibrik from heat}]
+		{lang ? rus:
+			- По кухне уже разносится аромат {dark_coffee: крепкого }кофе. Убираю турку с плиты и ложкой снимаю всю пену в чашку. Ставлю турку назад на конфорку.
+			- The smell of a {dark_coffee: strong }coffee carries all over the kitchen. I remove the ibrik from the oven and use a spoon to pour all of the foam into a cup. Return the ibrik on the hotplate.
+		}
 		~coffeeState -= coffeeState
 		~coffeeState += heated_2nd_time
-	* (heat3) {coffeeState == boiled_2nd_time} [Ещё раз снять турку с огня]
-		Во второй раз снимаю турку с плиты и тонкой струйкой выливаю половину кофе в чашку.
-		Возвращаю турку на конфорку.
+	* (heat3) {coffeeState == boiled_2nd_time} [{lang ? rus:Ещё раз снять турку с огня|Remove the ibrik from heat again}]
+		{lang ? rus:
+			- Во второй раз снимаю турку с плиты и тонкой струйкой выливаю половину кофе в чашку.
+				Возвращаю турку на конфорку.
+			- I remove the ibrik from the oven for the second time and pour half of the coffee into the cup.
+				I put the ibrik back.
+		}
 		~coffeeState -= coffeeState
 		~coffeeState += heated_3rd_time
-	* {coffeeState == boiled_3rd_time} [Окончательно снять турку с огня]
+	* {coffeeState == boiled_3rd_time} [{lang ? rus:Окончательно снять турку с огня|Remove the ibrik completely}]
 		~coffeeState -= coffeeState
 		~coffeeState += in_cup
-		Выключаю плиту, в последний раз снимаю турку и аккуратно выливаю оставшуюся половину кофе в чашку, стараясь не слить кофейную гущу из турки.
-	* {coffeeState == in_cup} [Подождать, пока в чашке опустится осадок]
+		{lang ? rus:
+			- Выключаю плиту, в последний раз снимаю турку и аккуратно выливаю оставшуюся половину кофе в чашку, стараясь не слить кофейную гущу из турки.
+			- I turn off the oven, remove the ibrik from it and cautiously pour the remaining half of the coffee into the cup, trying not to pour the dregs.
+		}
+	* {coffeeState == in_cup} [{lang ? rus:Подождать, пока в чашке опустится осадок|Wait for grounds to settle}]
 		~ coffeeState++
-		Пока кофе в чашке «доходит», я убираю назад всё, что доставал из шкафов, вытряхиваю и ополаскиваю турку. Остался последний штрих.
-	* {coffeeState == ground_settled} [Добавить в кофе немного «приправы»]
+		{lang ? rus:
+			- Пока кофе в чашке «доходит», я убираю назад всё, что доставал из шкафов, вытряхиваю и ополаскиваю турку. Остался последний штрих.
+			- While the coffee is "cleansing" I put back everything I took out of the cupboards, clean and wash the ibrik. One final step is left.
+		}
+	* {coffeeState == ground_settled} [{lang ? rus:Добавить в кофе немного «приправы»|Add some "condiment"}]
 		~ coffeeState++
-		Открываю холодильник, достаю пакет багряной жидкости и несколько раз встряхиваю.
-			** [Добавить одну каплю]
-				Задумываюсь, когда в последний раз пил кофе со свежей «приправой», без антикоагулянта. Но тут же отгоняю мрачные мысли и выдавливаю одну каплю в чашку.
-			** [Добавить несколько капель]
-				Возможно, появится привкус антикоагулянта, но хочется себя побаловать. Выдавливаю несколько капель в чашку.
-			--	<> Убираю пакет.
-				Кофе готов.
-	+ {coffeeState == ready && !end_1st_part} [Пить кофе]
+		{lang ? rus:
+			- Открываю холодильник, достаю пакет багряной жидкости и несколько раз встряхиваю.
+			- I open the fridge, take out the package of scarlet liquid and shake it several times.
+		}
+			** [{lang ? rus:Добавить одну каплю|Add one drop}]
+				{lang ? rus:
+					- Задумываюсь, когда в последний раз пил кофе со свежей «приправой», без антикоагулянта. Но тут же отгоняю мрачные мысли и выдавливаю одну каплю в чашку.
+					- I try to remember the last time I had a coffee with a fresh "condiment", without taste of anticoagulant. But then brush gloomy thoughts away and squeeze a drop into the cup.
+				}
+			** [{lang ? rus:Добавить несколько капель|Add several drops}]
+				{lang ? rus:
+					- Возможно, появится привкус антикоагулянта, но хочется себя побаловать. Выдавливаю несколько капель в чашку.
+					- The taste of anticoagulant will emerge for sure, but I want to treat myself. Squeeze several drops into the cup.
+				}
+			--	<> {lang ? rus:
+						- Убираю пакет.
+							Кофе готов.
+						- I put the package away.
+							The coffee is ready.
+					}
+	+ {coffeeState == ready && !end_1st_part} [{lang ? rus:Пить кофе|Drink coffee}]
 		{ stopping:
 			- Я двумя пальцами подношу чашку к губам и, вдыхая аромат, делаю первый, самый важный глоток.
 			{
