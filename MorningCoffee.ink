@@ -5,9 +5,9 @@
 
 // -> NEWS54.end
 // -> NEWS54
-// -> top
+-> top
 
-LIST lang = rus, (eng)
+LIST lang = rus, (eng) // очистить перед релизом
 
 LIST coffeeState = beans_are_ground, ingredients_added, ingredients_mixed, heated_1st_time, boiled_1st_time, heated_2nd_time, boiled_2nd_time, heated_3rd_time,boiled_3rd_time, in_cup, ground_settled, ready
 LIST coffeeIngredients = beans, ibrik, water, coffee, sugar, grinder
@@ -125,7 +125,7 @@ VAR end_1st_part = false
 				- I pour the desired amount of white sand in the ibrik.
 			}
 			~coffeeIngredients += sugar
-	* {coffeeIngredients !? water && coffeeIngredients ? ibrik} [{lang ? rus:Налить в турку воды|Pour some water in the ibrik}]
+	* {coffeeIngredients !? water && coffeeIngredients ? ibrik} [{lang ? rus:Налить в турку воды|Pour water in the ibrik}]
 		{lang ? rus:
 			- Наполняю турку до половины водой из фильтра.
 			- I feel the ibrik with water from the filter.
@@ -184,12 +184,12 @@ VAR end_1st_part = false
 			** [{lang ? rus:Добавить одну каплю|Add one drop}]
 				{lang ? rus:
 					- Задумываюсь, когда в последний раз пил кофе со свежей «приправой», без антикоагулянта. Но тут же отгоняю мрачные мысли и выдавливаю одну каплю в чашку.
-					- I try to remember the last time I had a coffee with a fresh "condiment", without taste of anticoagulant. But then brush gloomy thoughts away and squeeze a drop into the cup.
+					- I try to remember the last time I had a coffee with a fresh "condiment", without taste of anticoagulant. But then I brush gloomy thoughts away and squeeze a drop into the cup.
 				}
 			** [{lang ? rus:Добавить несколько капель|Add several drops}]
 				{lang ? rus:
 					- Возможно, появится привкус антикоагулянта, но хочется себя побаловать. Выдавливаю несколько капель в чашку.
-					- The taste of anticoagulant will emerge for sure, but I want to treat myself. Squeeze several drops into the cup.
+					- The taste of anticoagulant will emerge for sure, but I want to treat myself. I squeeze several drops into the cup.
 				}
 			--	<> {lang ? rus:
 						- Убираю пакет.
@@ -199,19 +199,36 @@ VAR end_1st_part = false
 					}
 	+ {coffeeState == ready && !end_1st_part} [{lang ? rus:Пить кофе|Drink coffee}]
 		{ stopping:
-			- Я двумя пальцами подношу чашку к губам и, вдыхая аромат, делаю первый, самый важный глоток.
-			{
-				- az_sekerli: Чистая
-				- orta_sekerli: Подслащённая
-				- sekerli: Сладкая
+			- {lang ? rus:
+				- Я двумя пальцами подношу чашку к губам и, вдыхая аромат, делаю первый, самый важный глоток.
+				- I take the cup with two fingers, smell the aroma and make first, most important sip.
 			}
-			<>{dark_coffee:, терпкая} горечь мгновенно отбирает на себя всё внимание чувств, ослепительной вспышкой перегружает сенсорику. Медный привкус «приправы» оттеняет эту горечь и добавляет нотку особого томления, мало кому знакомого. # CLASS: coffee
-			Да, отличный вышел кофе.
-			- Я встаю у окна и пью кофе маленькими глотками, наслаждаясь и глядя на огни ночного города.
-			- Я наслаждаюсь своим кофе, глядя в окно, когда Десмод вдруг замолкает.
+			{
+				- az_sekerli: {lang ? rus:Чистая|Clear}
+				- orta_sekerli: {lang ? rus:Подслащённая|Sweetened}
+				- sekerli: {lang ? rus:Сладкая|Sweet}
+			}
+			<>{lang ? rus:
+				- {dark_coffee:, терпкая} горечь мгновенно отбирает на себя всё внимание чувств, ослепительной вспышкой перегружает сенсорику. Медный привкус «приправы» оттеняет эту горечь и добавляет нотку особого томления, мало кому знакомого. # CLASS: coffee
+				Да, отличный вышел кофе.
+				- {dark_coffee:, strong} bitterness grabs all the attention, overloads the senses with blinding flash. Coppery flavor of the "condiment" accentuates the bitterness and adds this note of special yearning, known to a few. # CLASS: coffee
+				Yep, the coffee is great.
+			}
+			- {lang ? rus:
+				- Я встаю у окна и пью кофе маленькими глотками, наслаждаясь и глядя на огни ночного города.
+				- I go to the window, enjoy little sips of the coffee and overwatch the lights of night city.
+			}
+			- {lang ? rus:
+				- Я наслаждаюсь своим кофе, глядя в окно, когда Десмод вдруг замолкает.
+				- I enjoy my coffee and look in the window when Desmod falls silent.
+			}
 				~ end_1st_part = true
-				** — Десмод?
-					-> NEWS54
+				{lang ? rus:
+					- ** — Десмод?
+						-> NEWS54
+					- ** "Desmod?"
+						-> NEWS54
+				}
 		}
 	- 
 	// если все игредиенты собраны — статус кофе меняется
@@ -250,7 +267,10 @@ VAR end_1st_part = false
 		- text == 1:
 			~ tvChannel += music
 			~ musicPlays += riffs
-			Мимоходом клацаю лежащий тут же пульт от телевизионной панели за спиной. <span class="tv">Всё свободное пространство заполняется звуками мрачных гитарных риффов.</span>
+			{lang ? rus:
+				- Мимоходом клацаю лежащий тут же пульт от телевизионной панели за спиной. <span class="tv">Всё свободное пространство заполняется звуками мрачных гитарных риффов.</span>
+				- I passingly click the remote control of TV panel behind. <span class="tv">All of the space gets filled with grim sounds of guitar riffs.</span>
+			}
 	}
 	{
 		- tvChannel ? music:
@@ -282,18 +302,33 @@ VAR end_1st_part = false
 		- Music % song == 0:
 			{
 				- musicPlays ? girl_screams:
-					{TURNS_SINCE(-> turn) == 0: Но вот| От телевизионной панели слышно, как} к гитарам присоединяется женский вокал и, срываясь на визг, начинает кричать о «сёстрах на кострах». # CLASS: tv
+					{lang ? rus:
+						- От телевизионной панели слышно, как к гитарам присоединяется женский вокал и, срываясь на визг, начинает кричать о «сёстрах на кострах». # CLASS: tv
+						- From TV panel I hear as the woman voice accompanies the guitars and starts scream about "sisters burned at the stakes." # CLASS: tv
+					}
 				- musicPlays ? za_starts:
-					Песня, гремящая по телевизору, стихает на одном протяжном риффе и через несколько секунд тишины начинается другая. # CLASS: tv
+					{lang ? rus:
+						- Песня, гремящая по телевизору, стихает на одном протяжном риффе и через несколько секунд тишины начинается другая. # CLASS: tv
+						- Thundering song of TV ends with the particulary long riff and after several seconds of silence another one starts. # CLASS: tv
+					}
 				- musicPlays ? za_cont:
-					От телевизионной панели слышно, как то, что поначалу показалось госпелом, превращается во что-то по-настоящему тёмное и мрачное. # CLASS: tv
+					{lang ? rus:
+						- От телевизионной панели слышно, как то, что поначалу показалось госпелом, превращается во что-то по-настоящему тёмное и мрачное. # CLASS: tv
+						- From the TV panel I hear what sounded like Gospel turns in something really dark and macabre. # CLASS: tv
+					}
 				- musicPlays ? za_ends:
-					«Псевдо-госпел» завершается сходящим на нет скримом вокалиста. Неплохо. # CLASS: tv
+					{lang ? rus:
+						- «Псевдо-госпел» завершается сходящим на нет скримом вокалиста. Неплохо. # CLASS: tv
+						- Pseudo-Gospel ends with the winding-off scream of the singer. Not bad. # CLASS: tv
+					}
 			}
 		- Music % song == 1:
 			{
 				- musicPlays ? za_starts:
-					Я вдруг понимаю, что мелодия и вокал новой песни слишком похожи на госпел. Уже тянусь к пульту, когда первые же строчки развеивают мои опасения. # CLASS: tv
+					{lang ? rus:
+						- Я вдруг понимаю, что мелодия и вокал новой песни слишком похожи на госпел. Уже тянусь к пульту, когда первые же строчки развеивают мои опасения. # CLASS: tv
+						- I suddenly realize that melody and voice of the new song are resemble Gospel too mush. I am reaching the remote when first lines of lyrics dispel my concerns. # CLASS: tv
+					}
 			}
 	}
 ->->
@@ -334,15 +369,29 @@ VAR end_1st_part = false
 = ring
 	{
 		- ring == 1:
-			Чёрный прямоугольник телефона издаёт мелодичную трель и просыпается с именем на весь экран: «Десмод».
+			{lang ? rus:
+				- Чёрный прямоугольник телефона издаёт мелодичную трель и просыпается с именем на весь экран: «Десмод».
+				- The black rectangle of the phone rings and wakes up with the name: "Desmod."
+			}
 		- ring == 2:
-			Телефон продолжает звонить.
+			{lang ? rus:
+				- Телефон продолжает звонить.
+				- The phone keeps ringing.
+			}
 		- ring == 3:
-			Телефон всё звонит.
+			{lang ? rus:
+				- Телефон всё звонит.
+				- The phone is ringing still.
+			}
 		- ring == 4:
-			От телефона раздаётся сигнал включения автоответчика и доносится голос помощника:
-			— Хефе, это Десмод. Как договаривались, звоню с отчётом. # CLASS: voice
-			Я подхватываю наушник гарнитуры, вставляю в ухо и жму кнопку приёма:
+			{lang ? rus:
+				- От телефона раздаётся сигнал включения автоответчика и доносится голос помощника:
+				— Хефе, это Десмод. Как договаривались, звоню с отчётом. # CLASS: voice
+				Я подхватываю наушник гарнитуры, вставляю в ухо и жму кнопку приёма:
+				- The phone blips with the answering machine sound and I hear the assistant's voice:
+				"Jefe, Desmod speaks. I am calling to report as you ordered." # CLASS: voice
+				I grab the earphone, insert it and press to answer:
+			}
 			<- talk
 	}
 = text
@@ -427,17 +476,23 @@ VAR end_1st_part = false
 
 = opts
 	{LIST_COUNT(coffeeIngredients) <= 4: -> DONE}
-	* {ring < 3 && phoneTalk !? greetings} [Ответить на звонок]
-	* {ring >= 3 && phoneTalk !? greetings} [Всё таки ответить на звонок]
+	* {ring < 3 && phoneTalk !? greetings} [{lang ? rus:Ответить на звонок|Answer the phone}]
+	* {ring >= 3 && phoneTalk !? greetings} [{lang ? rus:Всё таки ответить на звонок|Answer this phone}]
 	- (took)
-		Я подхватываю наушник гарнитуры, вставляю в ухо и жму кнопку приёма:
-		— Десмод?
-		— Хола, хефе. Как договаривались, звоню с отчётом. # CLASS: voice
+		{lang ? rus:
+			- Я подхватываю наушник гарнитуры, вставляю в ухо и жму кнопку приёма:
+			— Десмод?
+			— Хола, хефе. Как договаривались, звоню с отчётом. # CLASS: voice
+			- I grab the earphone, insert it and press to answer:
+			"Desmod?"
+			"Hola, jefe. I am calling to report as you ordered." # CLASS: voice
+			
+		}
 		<- talk
 = talk
 	~ need_answer = true
 	~ phoneTalk += greetings
-	* {phoneTalk !? cargo_start and !(phoneTalk ? stuff_start && phoneTalk !? stuff_end)} — Рассказывай про груз.
+	* {phoneTalk !? cargo_start and !(phoneTalk ? stuff_start && phoneTalk !? stuff_end)} //{lang ? rus:— Рассказывай про груз.|"Tell me about the cargo."}
 		— Груз прибыл в порт шесть часов назад. Два контейнера, по тридцать кубов каждый… # CLASS: voice
 		~ phoneTalk += cargo_start
 	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? hungary_start} — Землю-то проверили?
@@ -450,7 +505,7 @@ VAR end_1st_part = false
 	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? soon_start} — Сутки — слишком много. Когда будут готовы первые партии?
 		— Так. Ну первую «Вольво» парни загрузят часа через три, думаю… # CLASS: voice
 		~ phoneTalk += soon_start
-	* {phoneTalk !? stuff_start and !(phoneTalk ? cargo_start && phoneTalk !? cargo_end)} — Рассказывай про штат.
+	* {phoneTalk !? stuff_start and !(phoneTalk ? cargo_start && phoneTalk !? cargo_end)} //{lang ? rus:— Рассказывай про штат.|"Tell me about the stuff."}
 		— Сегодня по спискам вышли: двенадцать грузчиков, из них восемь на фабрике, четверо на линии… # CLASS: voice
 		~ phoneTalk += stuff_start
 	* {phoneTalk ? stuff_start && phoneTalk !? stuff_end && phoneTalk !? loaders_start} — {phoneTalk ? enforcers_end: А что, есть|Есть} машины в рейсах без грузчиков?
@@ -533,7 +588,7 @@ VAR end_1st_part = false
 * Мой город[]. # CLASS: coffee
 	И я не позволю каким-то клоунам в сутанах всё испортить, когда веселье только началось.
 	Я расправляю чёрные крылья и взмываю в звёздное небо.
-	<p class="logo"><svg style="width: 75px;height: 90px;"><path d="M60,30 L60,30 L60,30 M60,15 L60,15 L60,15 M45,15 L45,15 L45,30 M30,15 L30,15 L30,15 M30,30 L30,30 L30,30 M15,15 L15,15 L15,30 M15,45 L15,45 L30,45 M15,60 L15,60 L30,60 M45,45 L45,45 L45,60 M60,60 L60,60 L60,45 " style="stroke-width: 12; stroke-linecap: square; stroke-linejoin: bevel; stroke: rgb(58, 58, 58); fill: none;"/></svg></p>
+	<p class="logo"><svg style="width: 75px;height: 90px;"><path d="M60,30 L60,30 L60,30 M60,15 L60,15 L60,15 M45,15 L45,15 L45,30 M30,15 L30,15 L30,15 M30,30 L30,30 L30,30 M15,15 L15,15 L15,30 M15,45 L15,45 L30,45 M15,60 L15,60 L30,60 M45,45 L45,45 L45,60 M60,60 L60,60 L60,45 " style="stroke-width: 12; stroke-linecap: square; stroke-linejoin: bevel; stroke: rgb(34, 35, 35); fill: none;"/></svg></p>
 -> END
 
 // functions

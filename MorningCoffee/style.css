@@ -9,9 +9,9 @@
 body {
     font-family: 'Fira Sans', sans-serif;
     font-weight: lighter;
-    background: white;
+    background: #f0f6f0;
     /* 05.09.2020 Основной цвет шрифта — тёмно-серый */
-    color: #3a3a3a;
+    color: #222323;
 }
 
 body.dark {
@@ -94,7 +94,7 @@ h3.written-in-ink {
     padding: 20px;
     /* 04.09.2020 Убираем дополнительный верхний padding у всего стори-контейнера */
     /*padding-top: 4em;*/
-    background: white;
+    background: #f0f6f0;
 }
 
 .dark .container {
@@ -104,7 +104,7 @@ h3.written-in-ink {
 p {
     font-size: 13pt;
     /* 05.09.2020 Основной цвет шрифта — тёмно-серый */
-    color: #3a3a3a;
+    color: #222323;
     line-height: 1.7em;
     font-weight: lighter;
 }
