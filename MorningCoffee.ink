@@ -4,8 +4,8 @@
 
 
 // -> NEWS54.end
-// -> NEWS54
--> top
+-> NEWS54
+// -> top
 
 LIST lang = rus, (eng) // очистить перед релизом
 
@@ -304,12 +304,12 @@ VAR end_1st_part = false
 				- musicPlays ? girl_screams:
 					{lang ? rus:
 						- От телевизионной панели слышно, как к гитарам присоединяется женский вокал и, срываясь на визг, начинает кричать о «сёстрах на кострах». # CLASS: tv
-						- From TV panel I hear as the woman voice accompanies the guitars and starts scream about "sisters burned at the stakes." # CLASS: tv
+						- From the TV panel I hear as the woman voice accompanies the guitars and starts scream about "sisters burned on the stakes." # CLASS: tv
 					}
 				- musicPlays ? za_starts:
 					{lang ? rus:
 						- Песня, гремящая по телевизору, стихает на одном протяжном риффе и через несколько секунд тишины начинается другая. # CLASS: tv
-						- Thundering song of TV ends with the particulary long riff and after several seconds of silence another one starts. # CLASS: tv
+						- Thundering song of TV ends with the particulary long riff and after several silent seconds another one starts. # CLASS: tv
 					}
 				- musicPlays ? za_cont:
 					{lang ? rus:
@@ -327,7 +327,7 @@ VAR end_1st_part = false
 				- musicPlays ? za_starts:
 					{lang ? rus:
 						- Я вдруг понимаю, что мелодия и вокал новой песни слишком похожи на госпел. Уже тянусь к пульту, когда первые же строчки развеивают мои опасения. # CLASS: tv
-						- I suddenly realize that melody and voice of the new song are resemble Gospel too mush. I am reaching the remote when first lines of lyrics dispel my concerns. # CLASS: tv
+						- I suddenly realize that melody and voice of the new song are resemble Gospel too much. I am reaching the remote when first lines of lyrics dispel my concerns. # CLASS: tv
 					}
 			}
 	}
@@ -389,7 +389,7 @@ VAR end_1st_part = false
 				— Хефе, это Десмод. Как договаривались, звоню с отчётом. # CLASS: voice
 				Я подхватываю наушник гарнитуры, вставляю в ухо и жму кнопку приёма:
 				- The phone blips with the answering machine sound and I hear the assistant's voice:
-				"Jefe, Desmod speaks. I am calling to report as you ordered." # CLASS: voice
+				"Jefe, Desmod speaks. I am calling with report as you ordered." # CLASS: voice
 				I grab the earphone, insert it and press to answer:
 			}
 			<- talk
@@ -400,13 +400,26 @@ VAR end_1st_part = false
 		- phoneTalk ? soon_start && phoneTalk !? soon_end:
 		{ once:
 			- 
-			- Из наушника доносится голос Десмода\:
-				— …Сможем отвезти заказ на Холмы, семье Алистера… # CLASS: voice
-			- — …Потом Северо-Запад, Эмбаркадеро, Промзона… # CLASS: voice
-			- — …Подключим ещё ребят и да, думаю, управимся раньше. # CLASS: voice
+			- {lang ? rus:
+				- Из наушника доносится голос Десмода\:
+					— …Сможем отвезти заказ на Холмы, семье Алистера… # CLASS: voice
+				- The voice of Desmod is heard from the earphone\:
+					"Will be able to deliver the order to the Hills, for the Alisters…"	 # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Потом Северо-Запад, Эмбаркадеро, Промзона… # CLASS: voice
+				- "…North-West then, Embarcadero, Industrial district…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Подключим ещё ребят и да, думаю, управимся раньше. # CLASS: voice
+				- "…Will call more guys and, yes, I think we'll make it earlier." # CLASS: voice
+			}
 			~ phoneTalk += soon_end
 			{ phoneTalk ? hungary_end:
-				<> У меня по грузу вся информация, хефе. Что-нибудь ещё?
+				{lang ? rus:
+					- <> У меня по грузу вся информация, хефе. Что-нибудь ещё?
+					- "That's all I have about cargo, Jefe. Anything else?" # CLASS: voice
+				}
 				~ phoneTalk += cargo_end
 			}
 			<- talk
@@ -423,9 +436,16 @@ VAR end_1st_part = false
 		- phoneTalk ? cargo_start && phoneTalk !? cargo_end:
 		{ once:
 			- 
-			- Десмод продолжает докладывать в наушник\:
-				— …Перевезли всё несколькими рейсами на фабрику, разгрузили в дальних складах… # CLASS: voice
-			-	— …Сейчас парни делят груз на партии, в течение суток сможем начать развозить по клиентам. # CLASS: voice
+			- {lang ? rus:
+				- Десмод продолжает докладывать в наушник\:
+					— …Перевезли всё несколькими рейсами на фабрику, разгрузили в дальних складах… # CLASS: voice
+				- Desmod continues his report:
+					"…We've moved the cargo to the factory in several runs, unloaded it in far warehouses…" # CLASS: voice
+			}
+			-	{lang ? rus:
+				- — …Сейчас парни делят груз на партии, в течение суток сможем начать развозить по клиентам. # CLASS: voice
+				- "…Guys are dividing the cargo in batches right now. Will be able to deliver to clients in twenty-four." # CLASS: voice
+			}
 			// ~ phoneTalk += cargo_end
 			<- talk
 		}
@@ -441,12 +461,24 @@ VAR end_1st_part = false
 		- phoneTalk ? enforcers_start && phoneTalk !? enforcers_end:
 		{ once:
 			- 
-			- — …В машинах сопровождения по наблюдателю и два оператора… # CLASS: voice
-			- — …В случае чего, на связи всегда отдельная группа поддержки… # CLASS: voice
-			- — …Но никаких эксцессов не ожидаем. В последнее время всё тихо. # CLASS: voice
+			- {lang ? rus:
+				- — …В машинах сопровождения по наблюдателю и два оператора… # CLASS: voice
+				- "…There are observer and two operators in each of the escort cars…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …В случае чего, на связи всегда отдельная группа поддержки… # CLASS: voice
+				- "…Just in case, there is a support squad always on air…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Но никаких эксцессов не ожидаем. В последнее время всё тихо. # CLASS: voice
+				- "…But we don't forsee any incidents. It's quiet lately." # CLASS: voice
+			}
 			~ phoneTalk += enforcers_end
 			{ phoneTalk ? loaders_end:
-				<> У меня по штату всё. Что-то ещё, хефе?
+				{lang ? rus:
+					- <> У меня по штату всё. Что-то ещё, хефе?
+					- "That is all I have on stuff. Anything else, Jefe?" # CLASS: voice
+				}
 				~ phoneTalk += stuff_end
 			}
 			<- talk
@@ -454,20 +486,42 @@ VAR end_1st_part = false
 		- phoneTalk ? stuff_start && phoneTalk !? stuff_end:
 		{ once:
 			- 
-			- Десмод продолжает докладывать в наушник\:
-				— …Шестеро водителей, сейчас все на линии. У каждого по рейсу, потом возвращаются на базу. # CLASS: voice
+			- {lang ? rus:
+				- Десмод продолжает докладывать в наушник\:
+					— …Шестеро водителей, сейчас все на линии. У каждого по рейсу, потом возвращаются на базу. # CLASS: voice
+				- Desmod continues to report in the earphone\:
+					"…Six drivers on the line. Each has a run, then returns to the base." # CLASS: voice
+			}
 			// ~ phoneTalk += stuff_end
 			<- talk
 		}
 		- phoneTalk ? clients_start && phoneTalk !? clients_end && !end_1st_part:
 		{ once:
 			- 
-			- — …Новичкам из пригорода отвезли семь объёмов, они явно расширяются, нужно взять на заметку… # CLASS: voice
-			- — …Марку Питбулю доставили новый объём бесплатно, прошлый заказ и правда оказался некачественным — поставщик разбавил местной глиной, с ним уже разобрались… # CLASS: voice
-			- — …По отработанным заказам всё. На сегодня у нас новая партия. Как я говорил, сначала доставляем старику Алистеру и его выводку на Холмы — шесть объёмов… # CLASS: voice
-			- — …Клиенты из Северо-Запада покупают редко и немного, но платят всегда хорошо и в срок. На сегодня закзали два объёма… # CLASS: voice
-			- — …Дальше тот хлыщ из Эмбаркадеро. Своего ковена не заводит, но объём обновляет регулярно, поэтому предпоследний рейс к нему… # CLASS: voice
-			- — … # CLASS: voice
+			- {lang ? rus:
+				- — …Новичкам из пригорода отвезли семь объёмов, они явно расширяются, нужно взять на заметку… # CLASS: voice
+				- "…Newbies from suburbs have got seven volumes, it seems they are expanding, should keep an eye…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Марку Питбулю доставили новый объём бесплатно, прошлый заказ и правда оказался некачественным — поставщик разбавил местной глиной, с ним уже разобрались… # CLASS: voice
+				- "…Mark Pitbull was provided with the new volume for free, the last delivery turned out to be of poor quality - the supplier have diluted it with local loam. He's been dealt with…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …По отработанным заказам всё. На сегодня у нас новая партия. Как я говорил, сначала доставляем старику Алистеру и его выводку на Холмы — шесть объёмов… # CLASS: voice
+				- "…That's all for closed orders. Today we have fresh runs. As I said, we deliver to the old Alister and his brood on the Hills first — six volumes…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Клиенты из Северо-Запада покупают редко и немного, но платят всегда хорошо и в срок. На сегодня закзали два объёма… # CLASS: voice
+				- "…Clients from North-West buy seldom and small but pay well and on time. Have ordered two volumes for today…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — …Дальше тот хлыщ из Эмбаркадеро. Своего ковена не заводит, но объём обновляет регулярно, поэтому предпоследний рейс к нему… # CLASS: voice
+				- "…Then this fop from Embarcadero. Doesn't make his own coven but refreshes the volume regularily. The second to the last run is his…" # CLASS: voice
+			}
+			- {lang ? rus:
+				- — … # CLASS: voice
+				- "…" # CLASS: voice
+			}
 			// ~ phoneTalk += stuff_end
 			<- talk
 		}
@@ -485,87 +539,166 @@ VAR end_1st_part = false
 			— Хола, хефе. Как договаривались, звоню с отчётом. # CLASS: voice
 			- I grab the earphone, insert it and press to answer:
 			"Desmod?"
-			"Hola, jefe. I am calling to report as you ordered." # CLASS: voice
+			"Hola, Jefe. I am calling to report as you ordered." # CLASS: voice
 			
 		}
 		<- talk
 = talk
 	~ need_answer = true
 	~ phoneTalk += greetings
-	* {phoneTalk !? cargo_start and !(phoneTalk ? stuff_start && phoneTalk !? stuff_end)} //{lang ? rus:— Рассказывай про груз.|"Tell me about the cargo."}
-		— Груз прибыл в порт шесть часов назад. Два контейнера, по тридцать кубов каждый… # CLASS: voice
+	* {phoneTalk !? cargo_start and !(phoneTalk ? stuff_start && phoneTalk !? stuff_end)}  {lang ? rus:— Рассказывай про груз.|"Tell me about the cargo."}
+		{lang ? rus:
+			- — Груз прибыл в порт шесть часов назад. Два контейнера, по тридцать кубов каждый… # CLASS: voice
+			- "Cargo has arrived in the port six hours ago. Two containers, thirty cubic meters each…" # CLASS: voice
+		}
 		~ phoneTalk += cargo_start
-	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? hungary_start} — Землю-то проверили?
-		— Да, хефе. Наилучший венгерский чернозём. Стрикс его чуть ли не есть начал, когда вскрыли мешки. # CLASS: voice
-		Я оставляю его комментарий без внимания.
-		{ phoneTalk ? soon_end:
-			— У меня по грузу вся информация. Что-нибудь ещё, хефе? # CLASS: voice
+	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? hungary_start}  {lang ? rus:— Землю-то проверили?|"Have you checked soil?"}
+		{lang ? rus:
+			- — Да, хефе. Наилучший венгерский чернозём. Стрикс его чуть ли не есть начал, когда вскрыли мешки. # CLASS: voice
+				Я оставляю его комментарий без внимания.
+				{ phoneTalk ? soon_end:
+					— У меня по грузу вся информация. Что-нибудь ещё, хефе? # CLASS: voice
+				}
+			- "Yes, Jefe. The best Hungarian topsoil. Strix almost started to eat it when we've opened sacks." # CLASS: voice
+				I pay no attention to his comment.
+				{ phoneTalk ? soon_end:
+					"That's all I have about the cargo. Anything else, Jefe?" # CLASS: voice
+				}
 		}
 		~ phoneTalk += hungary_start
-	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? soon_start} — Сутки — слишком много. Когда будут готовы первые партии?
-		— Так. Ну первую «Вольво» парни загрузят часа через три, думаю… # CLASS: voice
+	* {phoneTalk ? cargo_start && phoneTalk !? cargo_end && phoneTalk !? soon_start}  {lang ? rus:— Сутки — слишком много. Когда будут готовы первые партии?|"Twenty-four hours is too long. When the first batches will be ready?"}
+		{lang ? rus:
+			- — Так. Ну первую «Вольво» парни загрузят часа через три, думаю… # CLASS: voice
+			- "Well. The first Volvo would be ready in three hours, I think…" # CLASS: voice
+		}
 		~ phoneTalk += soon_start
-	* {phoneTalk !? stuff_start and !(phoneTalk ? cargo_start && phoneTalk !? cargo_end)} //{lang ? rus:— Рассказывай про штат.|"Tell me about the stuff."}
-		— Сегодня по спискам вышли: двенадцать грузчиков, из них восемь на фабрике, четверо на линии… # CLASS: voice
+	* {phoneTalk !? stuff_start and !(phoneTalk ? cargo_start && phoneTalk !? cargo_end)}  {lang ? rus:— Рассказывай про штат.|"Tell me about the stuff."}
+		{lang ? rus:
+			- — Сегодня по спискам вышли: двенадцать грузчиков, из них восемь на фабрике, четверо на линии… # CLASS: voice
+			- "According to records today we have: twelve loaders, eight are at the factory, four are on the line…" # CLASS: voice
+		}
 		~ phoneTalk += stuff_start
-	* {phoneTalk ? stuff_start && phoneTalk !? stuff_end && phoneTalk !? loaders_start} — {phoneTalk ? enforcers_end: А что, есть|Есть} машины в рейсах без грузчиков?
-		— Да, там небольшие заказы, водители сами справятся. # CLASS: voice
+	* {phoneTalk ? stuff_start && phoneTalk !? stuff_end && phoneTalk !? loaders_start}  {lang ? rus:— {phoneTalk ? enforcers_end: А что, есть|Есть} машины в рейсах без грузчиков?|"There are trucks without loaders?"}
+		{lang ? rus:
+			- — Да, там небольшие заказы, водители сами справятся. # CLASS: voice
+			- "Yeah, there are small orders, drivers will handle themselves." # CLASS: voice
+		}
 		{ phoneTalk ? enforcers_end:
-			<> У меня по штату всё. Что-то ещё, хефе? # CLASS: voice
+			{lang ? rus:
+				- <> У меня по штату всё. Что-то ещё, хефе? # CLASS: voice
+				- "That's all I have on the stuff. Anything else, Jefe?" # CLASS: voice
+			}
 		}
 		~ phoneTalk += loaders_start
-	* {phoneTalk ? stuff_start && phoneTalk !? stuff_end && phoneTalk !? enforcers_start} — А что с охраной?
-		— За каждым грузовиком закреплено по машине сопровождения… # CLASS: voice
+	* {phoneTalk ? stuff_start && phoneTalk !? stuff_end && phoneTalk !? enforcers_start}  {lang ? rus:— А что с охраной?|"What about security?"}
+		{lang ? rus:
+			- — За каждым грузовиком закреплено по машине сопровождения… # CLASS: voice
+			- "Each truck is followed by a escort car…" # CLASS: voice
+		}
 		~ phoneTalk += enforcers_start
-	* {phoneTalk ? cargo_end && phoneTalk ? stuff_end && phoneTalk !? clients_start} — Давай пройдёмся по списку клиентов. Кто отработан, кто в очереди и так далее.
-		— Так. Из тех заказов, что запланированны на этой неделе уже доставлены: группе Маддса, что в южных районах — четыре объёма… # CLASS: voice
+	* {phoneTalk ? cargo_end && phoneTalk ? stuff_end && phoneTalk !? clients_start}  {lang ? rus:— Давай пройдёмся по списку клиентов. Кто отработан, кто в очереди и так далее.|"Let's run the clients list. Who is dealt, who is next, etc."}
+		{lang ? rus:
+			- — Так. Из тех заказов, что запланированны на этой неделе уже доставлены: группе Маддса, что в южных районах — четыре объёма… # CLASS: voice
+			- "Sure. With the orders planned for this week next are delivered: Madds’ group in the southern blocks — four volumes…" # CLASS: voice
+		}
 		~ phoneTalk += clients_start
 	-
 	~ need_answer = false
 	-> top
 
 == NEWS54
-— Хефе, у вас работает телевизор? Скорее переключитесь на новостной канал! # CLASS: voice
-* [Переключить канал]
--	Я подхватываю пульт телевизионной панели и на пути к ней жму цифры новостного канала.
-	На экране — ночь, улица в пригороде, двухэтажный белый дом. Вокруг дома — полицейское оцепление. Маячки нескольких машин заливают улицу красным и синим светом. Надпись в углу: «Прямой эфир». # CLASS: tv
-	«…продолжается полицейская операция по задержанию опасного преступника. Личность задерживаемого пока не раскрывается, только то, что он как-то связан с известными событиями последних нескольких месяцев: нападением на Тринадцатое полицейское отделение, взрывами на объектах транспортного управления, массовым исчезновением людей…» # CLASS: tv # CLASS: voice
-* [Смотреть сюжет]
--	Картинка на экране меняется: репортёр берёт интервью у высокого полицейкого чина. На фоне всё так же мечется красно-синий свет. # CLASS: tv
-	«По нашим данным субъект, живущий в этом доме, является главой картеля, занимающегося крупными контрабандными перевозками. Таким образом, он является ключевым звеном в логистике у криминальных организаций, наводнивших наш город в последний год». # CLASS: tv # CLASS: voice
-	Голос Десмода в наушнике:
-	— Хефе, это же на вашей улице! Разве это не ваш дом!? # CLASS: voice
-* [Игнорировать Десмода]
-* — Тише, Десмод. Дай посмотреть.
-- «Простите, но контрабандой чего занимается этот картель?» # CLASS: tv # CLASS: voice
-	«Земли». # CLASS: tv # CLASS: voice
-	«Земли?» # CLASS: tv # CLASS: voice
-	«Да. Земли из Восточной Европы. И перед тем, как вы зададите свой следующий вопрос, я попрошу выступить нашего консультанта от Римской католической церкви. Отец Кобб, будьте добры». # CLASS: tv # CLASS: voice
-* [Смотреть дальше]
--	<span class='tv'>На экране появляется хмурый священник в чёрной сутане с неизменной книжкой в руках.</span> Я салютую ему чашкой кофе.
-	«Я знаю, что многие из вас не верят. Уже много месяцев правительства твердят об угрозе, но всё это больше похоже на истории из дешёвых романов и посредственного кино. Однако, уверяю вас — угроза вполне реальна. Церковь веками боролась с этой заразой, сдерживала её…» # CLASS: tv # CLASS: voice
-* [Фыркнуть]
--	В этом месте я презрительно фыркаю.
-	«…Но современный мир оказался слишком восприимчив к ней. И наш город, как и многие другие в мире, сейчас захлёстывает эпидемия — да-да, именно эпидемия — вампиризма. Чтобы сдержать её, уже недостаточно просто точечного ликвидирования верховного вампира, или упыря, или стригоя. Нужен системный подход…» # CLASS: tv # CLASS: voice
-* [Слушать священника]
--	«…Нужно лишить вампиров одного из средств существования. И если лишить их доступа к крови теперь практически невозможно, то ограничить доступ к земле, без которой они не могут отдыхать, вполне реально. Речь идёт о земле из ограниченного списка местностей в Восточной Европе: Румыния, Польша, Венгрия и прочие. Следовательно, им её нужно импортировать и это их слабость». # CLASS: tv # CLASS: voice
-* [Слушать дальше]
--	Тут вновь вступается высокий полицейский чин: # CLASS: tv
-	«Текущая спецоперация как раз направлена на перекрытие одного из каналов поставки. Кроме того, это первая операция, проводимая совместно с силами специального назначения Церкви. Отец Кобб?» # CLASS: tv # CLASS: voice
-* [Так, что-то новенькое]
--	И опять священник: # CLASS: tv
-	«Понимая серьёзность ситуации, кардинальской коллегией было принято решение о формировании отрядов по борьбе с вампирами, специально подготовленных для таких задач и способных в сжатые сроки переместиться в любую точку мира. Такой отряд был выслан и в наш город». # CLASS: tv # CLASS: voice
-	В это время картинка показывает с десяток дюжих молодцев в чёрной экипировке и с белыми воротниками. # CLASS: tv
+{lang ? rus:
+	- — Хефе, у вас работает телевизор? Скорее переключитесь на новостной канал! # CLASS: voice
+	- "Jefe, do you have the TV turned on? Please, tune to the news!" # CLASS: voice
+}
+* [{lang ? rus:Переключить канал|Change TV channel}]
+-	{lang ? rus:
+	- Я подхватываю пульт телевизионной панели и на пути к ней жму цифры новостного канала.
+		На экране — ночь, улица в пригороде, двухэтажный белый дом. Вокруг дома — полицейское оцепление. Маячки нескольких машин заливают улицу красным и синим светом. Надпись в углу: «Прямой эфир». # CLASS: tv
+		«…продолжается полицейская операция по задержанию опасного преступника. Личность задерживаемого пока не раскрывается, только то, что он как-то связан с известными событиями последних нескольких месяцев: нападением на Тринадцатое полицейское отделение, взрывами на объектах транспортного управления, массовым исчезновением людей…» # CLASS: tv # CLASS: voice
+	- I grab the remote and press digits of the news channel while nearing the TV panel.
+		On the screen: night, suburban street, two-story white house. House is surrounded by police. Lights of several cars drown the street with red and blue flashes. Label in the corner: "Live". # CLASS: tv
+		"…police operation to detain a dangerous criminal is continued. The identity of the offender is not revealed, only facts that he is somehow connected to known cases happened within last months: assault on the Thirteen's Police Station, explosions at Transport Department's infrastructure, mass disappearance of people…" # CLASS: tv  # CLASS: voice
+}
+* [{lang ? rus:Смотреть сюжет|Follow the story}]
+-	{lang ? rus:
+	- Картинка на экране меняется: репортёр берёт интервью у высокого полицейкого чина. На фоне всё так же мечется красно-синий свет. # CLASS: tv
+		«По нашим данным субъект, живущий в этом доме, является главой картеля, занимающегося крупными контрабандными перевозками. Таким образом, он является ключевым звеном в логистике у криминальных организаций, наводнивших наш город в последний год». # CLASS: tv # CLASS: voice
+		Голос Десмода в наушнике:
+		— Хефе, это же на вашей улице! Разве это не ваш дом!? # CLASS: voice
+	- The picture on the screen changes: a reporter is interviewing some police high-rank. The red-blue lights are splashing in the background. # CLASS: tv
+		"According to our data, the suspect living in this house is the head of the strong cartel involved in major smuggling. Therefore, he is a key figure in logistics of several criminal organizations flooded our city recently." # CLASS: tv # CLASS: voice
+		Desmod in the earphone:
+		"Jefe, it is on your street! Isn't this your house?!" # CLASS: voice
+}
+* [{lang ? rus:Игнорировать Десмода|Ignore Desmod}]
+*  {lang ? rus:— Тише, Десмод. Дай посмотреть.|"Hush, Desmod. I'm watching."}
+- {lang ? rus:
+	- «Простите, но контрабандой чего занимается этот картель?» # CLASS: tv # CLASS: voice
+		«Земли». # CLASS: tv # CLASS: voice
+		«Земли?» # CLASS: tv # CLASS: voice
+		«Да. Земли из Восточной Европы. И перед тем, как вы зададите свой следующий вопрос, я попрошу выступить нашего консультанта от Римской католической церкви. Отец Кобб, будьте добры». # CLASS: tv # CLASS: voice
+	- "Excuse me, but what is this cartel smuggling?" # CLASS: tv # CLASS: voice
+		"Soil." # CLASS: tv # CLASS: voice
+		"Soil?" # CLASS: tv # CLASS: voice
+		"Yes. Eastern European soil. And before you ask your next question, please, let me introduce our consultant from the Roman Catholic Church. Father Cobb, would you kindly step in." # CLASS: tv # CLASS: voice
+}
+* [{lang ? rus:Смотреть дальше|Continue watching}]
+-	{lang ? rus:
+	- <span class='tv'>На экране появляется хмурый священник в чёрной сутане с неизменной книжкой в руках.</span> Я салютую ему чашкой кофе.
+		«Я знаю, что многие из вас не верят. Уже много месяцев правительства твердят об угрозе, но всё это больше похоже на истории из дешёвых романов и посредственного кино. Однако, уверяю вас — угроза вполне реальна. Церковь веками боролась с этой заразой, сдерживала её…» # CLASS: tv # CLASS: voice
+	- <span class='tv'>A frowning priest in a black cassock and with the permanent book in his hands appears on the screen.</span> I salute him with the coffee cup.
+		"I know that many of you do not believe. For many months, governments have warned over and over of the threat. But all of this reminds only of cheap books and B-movies. But I assure you - the threat is very real. For many centuries The Church fought this plague, kept it off…" # CLASS: tv # CLASS: voice
+}
+* [{lang ? rus:Фыркнуть|Snort}]
+-	{lang ? rus:
+	- В этом месте я презрительно фыркаю.
+		«…Но современный мир оказался слишком восприимчив к ней. И наш город, как и многие другие в мире, сейчас захлёстывает эпидемия — да-да, именно эпидемия — вампиризма. Чтобы сдержать её, уже недостаточно просто точечного ликвидирования верховного вампира, или упыря, или стригоя. Нужен системный подход…» # CLASS: tv # CLASS: voice
+	- At these words, I snort scornfully.
+		"…But the modern world has turned out to be too susceptible to it. And our city as many-many others in the world is drowning in an epidemic - yes, the epidemic it is! - of vampirism. This time to overcome the plague it is not enough to just eliminate the high vampire, or strigoi, or oupyr. We need a systematic approach…" # CLASS: tv # CLASS: voice
+}
+* [{lang ? rus:Слушать священника|Listen to the priest}]
+-	{lang ? rus:
+	- «…Нужно лишить вампиров одного из средств существования. И если лишить их доступа к крови теперь практически невозможно, то ограничить доступ к земле, без которой они не могут отдыхать, вполне реально. Речь идёт о земле из ограниченного списка местностей в Восточной Европе: Румыния, Польша, Венгрия и прочие. Следовательно, им её нужно импортировать и это их слабость». # CLASS: tv # CLASS: voice
+	- "…We need to deprive vampires of their means for surviving. And as we cannot close them off the fresh blood now, we can limit their access to soil that they need to rest. I am talking about soil from the finite list of lands in Eastern Europe: Romania, Poland, Hungary, etc. They have to import it, therefore it is their weakness." # CLASS: tv # CLASS: voice
+}
+* [{lang ? rus:Слушать дальше|Listen further}]
+-	{lang ? rus:
+	- Тут вновь вступается высокий полицейский чин: # CLASS: tv
+		«Текущая спецоперация как раз направлена на перекрытие одного из каналов поставки. Кроме того, это первая операция, проводимая совместно с силами специального назначения Церкви. Отец Кобб?» # CLASS: tv # CLASS: voice
+	- Police high-rank comes in again:
+		"This special operation is aimed to close one of these delivery channels. Moreover, it is the first operation carried out in collaboration with the Church's special forces. Father Cobb?" # CLASS: tv # CLASS: voice
+}
+* [{lang ? rus:Так, что-то новенькое|Well, that's new}]
+-	{lang ? rus:
+	- И опять священник: # CLASS: tv
+		«Понимая серьёзность ситуации, кардинальской коллегией было принято решение о формировании отрядов по борьбе с вампирами, специально подготовленных для таких задач и способных в сжатые сроки переместиться в любую точку мира. Такой отряд был выслан и в наш город». # CLASS: tv # CLASS: voice
+		В это время картинка показывает с десяток дюжих молодцев в чёрной экипировке и с белыми воротниками. # CLASS: tv
+	- And the priest again:
+		"The Catholic Church understands the severity of the situation and the College of Cardinals made a decision to form special units to deal with the threat. They are trained specifically on the task and are able to travel in any spot on the globe in no time. Such unit was sent to our city too." # CLASS: tv # CLASS: voice
+		Meanwhile, the screen shows a dozen of hefty fellows in black outfits and white collars. # CLASS: tv
+}
 -	(taskforce)
-* [Приглядеться к их экипировке]
-	Стандартное боевое снаряжение спецслужб: бронежилеты, шлемы, прыжковые костюмы. Исключение только одно — у каждого на шее белая колоратка. Боевые святые отцы, надо же.
-* [Приглядеться к их оружию]
-	Обычные с виду штурмовые винтовки, однако, подствольные фонари наверняка с ультрафиолетовыми лампами. Да и патроны, скорее всего, с нарезанными крестами, или вымоченные в святой воде, или ещё какая пакость.
+* [{lang ? rus:Приглядеться к их экипировке|Take a closer look at their outfits}]
+	{lang ? rus:
+		- Стандартное боевое снаряжение спецслужб: бронежилеты, шлемы, прыжковые костюмы. Исключение только одно — у каждого на шее белая колоратка. Боевые святые отцы, надо же.
+		- A standard battle garment of spec ops: bulletproof vests, helmets, jumpsuits. With the only exception - each one sports the white collar. Battle holy fathers, wow.
+	}
+* [{lang ? rus:Приглядеться к их оружию|Take a closer look at their guns}]
+	{lang ? rus:
+		- Обычные с виду штурмовые винтовки, однако, подствольные фонари наверняка с ультрафиолетовыми лампами. Да и патроны, скорее всего, с нарезанными крестами, или вымоченные в святой воде, или ещё какая пакость.
+		- Seem like usual assault rifles, but flashlights are definitely with UV-lamps. And bullets may be scratched with crosses or soaked in holy water or some other dirty tricks.
+	}
 -	{-> taskforce |}
-	Полицейский чин: # CLASS: tv
-	«Прошу прощения, нам необходимо вернуться к координации операцией». # CLASS: tv # CLASS: voice
-	Картинка переключается с него и Кобба на отряд святош, который времени не терял и уже гуськом приближается ко входу в дом. # CLASS: tv
-	<span class='voice'>— Хефе… —</span> подаёт голос Десмод.
+	{lang ? rus:
+		- Полицейский чин: # CLASS: tv
+		«Прошу прощения, нам необходимо вернуться к координации операцией». # CLASS: tv # CLASS: voice
+		Картинка переключается с него и Кобба на отряд святош, который времени не терял и уже гуськом приближается ко входу в дом. # CLASS: tv
+		<span class='voice'>— Хефе… —</span> подаёт голос Десмод.
+		- Police high-rank:
+		"Please, excuse us. We should return to our duties." # CLASS: tv # CLASS: voice
+		The camera view moves from him and Cobb to the unit of saints. They didn't waste their time and are closing to the house's entry now. # CLASS: tv
+	}
 * [Пить кофе]
 -	Я отпиваю очередной глоток, ожидая представления.
 	Святоши на секунду замирают по обе стороны от входной двери дома, потом выламывают её и очень быстро исчезают внутри. # CLASS: tv
