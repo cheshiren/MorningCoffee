@@ -23,7 +23,7 @@ VAR song = 5
 
 VAR end_1st_part = false
 
-<h2>Выберите язык \| Choose the language</h2>
+<h2>Выберите язык \| Choose a language</h2>
 * [Русский]
 	~ lang += rus
 * [English]
