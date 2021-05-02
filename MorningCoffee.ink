@@ -128,7 +128,7 @@ VAR end_1st_part = false
 	* {coffeeIngredients !? water && coffeeIngredients ? ibrik} [{lang ? rus:Налить в турку воды|Pour water in the ibrik}]
 		{lang ? rus:
 			- Наполняю турку до половины водой из фильтра.
-			- I feel the ibrik with water from the filter.
+			- I fill the ibrik with water from the filter.
 		}
 		~coffeeIngredients += water
 	* {coffeeState == ingredients_added} [{lang ? rus:Перемешать содержимое турки|Stir the ibrik's contents}]
@@ -381,7 +381,7 @@ VAR end_1st_part = false
 		- ring == 3:
 			{lang ? rus:
 				- Телефон всё звонит.
-				- The phone is ringing still.
+				- The phone is still ringing.
 			}
 		- ring == 4:
 			{lang ? rus:
@@ -660,7 +660,7 @@ VAR end_1st_part = false
 * [{lang ? rus:Слушать священника|Listen to the priest}]
 -	{lang ? rus:
 	- «…Нужно лишить вампиров одного из средств существования. И если лишить их доступа к крови теперь практически невозможно, то ограничить доступ к земле, без которой они не могут отдыхать, вполне реально. Речь идёт о земле из ограниченного списка местностей в Восточной Европе: Румыния, Польша, Венгрия и прочие. Следовательно, им её нужно импортировать и это их слабость». # CLASS: tv # CLASS: voice
-	- "…We need to deprive vampires of their means for surviving. And as we cannot close them off the fresh blood now, we can limit their access to soil that they need to rest. II am talking about a special kind of soil from the finite list of lands in Eastern Europe: Romania, Poland, Hungary, etc. They have to import it, therefore it is their weakness." # CLASS: tv # CLASS: voice
+	- "…We need to deprive vampires of their means for surviving. And as we cannot close them off the fresh blood now, we can limit their access to soil that they need to rest. I am talking about a special kind of soil from the finite list of lands in Eastern Europe: Romania, Poland, Hungary, etc. They have to import it, therefore it is their weakness." # CLASS: tv # CLASS: voice
 }
 * [{lang ? rus:Слушать дальше|Listen further}]
 -	{lang ? rus:
