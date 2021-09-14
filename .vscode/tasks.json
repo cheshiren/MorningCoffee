@@ -36,6 +36,9 @@
 			"linux": {
 				"command": "'/media/cheshire/Media/YandexDisk-cheshire@ifiction.ru/Dropbox/!IF/Platforms/Ink/inklecate_0.9.0/inklecate.exe' ${fileBasename}",
 			},
+			"osx": {
+				"command": "'/Users/vdobranov/Yandex.Disk.localized/Dropbox/!IF/Platforms/Ink/inklecate_1.0.0_mac/inklecate' ${fileBasename}"
+			}
 		},
 		// создаём объект storyContent и копируем в него содержимое JSON. Сохраняем как {story}.js
 		{
@@ -51,6 +54,9 @@
 				"command": "echo 'var storyContent =' >> ${fileDirname}/${fileBasenameNoExtension}.js | cat ${fileDirname}/${fileBasenameNoExtension}.ink.json >> ${fileDirname}/${fileBasenameNoExtension}.js; echo ';' >> ${fileDirname}/${fileBasenameNoExtension}.js"
 				// "command": "'var storyContent = ' + (Get-Content -Path ${fileDirname}\\${fileBasenameNoExtension}.ink.json) + ';' | Set-Content -Path ${fileDirname}\\${fileBasenameNoExtension}.js -Encoding UTF8",
 			},
+			"osx": {
+				"command": "echo 'var storyContent =' >> ${fileDirname}/${fileBasenameNoExtension}.js | cat ${fileDirname}/${fileBasenameNoExtension}.ink.json >> ${fileDirname}/${fileBasenameNoExtension}.js; echo ';' >> ${fileDirname}/${fileBasenameNoExtension}.js"
+			},
 		},
 		// перемещаем {story}.js в заранее созданную папку {story}, где уже лежит всё нужное
 		{
@@ -65,6 +71,9 @@
 			"linux": {
 				"command": "mv ${fileDirname}/${fileBasenameNoExtension}.js ${fileDirname}/${fileBasenameNoExtension}",
 			},
+			"osx": {
+				"command": "mv ${fileDirname}/${fileBasenameNoExtension}.js ${fileDirname}/${fileBasenameNoExtension}",
+			},
 		},
 		// удаляем уже не нужный JSON
 		{
@@ -77,6 +86,9 @@
 				"command": "Remove-Item -Path ${fileDirname}\\${fileBasenameNoExtension}.ink.json",
 			},
 			"linux": {
+				"command": "rm ${fileDirname}/${fileBasenameNoExtension}.ink.json",
+			},
+			"osx": {
 				"command": "rm ${fileDirname}/${fileBasenameNoExtension}.ink.json",
 			},
 		}
