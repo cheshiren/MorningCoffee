@@ -37,7 +37,7 @@
 				"command": "'/media/cheshire/Media/YandexDisk-cheshire@ifiction.ru/Dropbox/!IF/Platforms/Ink/inklecate_0.9.0/inklecate.exe' ${fileBasename}",
 			},
 			"osx": {
-				"command": "'/Users/vdobranov/Yandex.Disk.localized/Dropbox/!IF/Platforms/Ink/inklecate_1.0.0_mac/inklecate' ${fileBasename}"
+				"command": "'/Users/vdobranov/Yandex.Disk.localized/Dropbox/!IF/Platforms/Ink/inklecate_0.9.0_mac/inklecate' ${fileBasename}"
 			}
 		},
 		// создаём объект storyContent и копируем в него содержимое JSON. Сохраняем как {story}.js
